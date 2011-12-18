@@ -1,12 +1,10 @@
-(ns tests
+(ns com.twinql.clojure.async-client-test
   (:refer-clojure)
-  (:require [com.twinql.clojure.async-client :as async])
-  (:require [com.twinql.clojure.async-libs :as async-libs])
-  (:require [com.twinql.clojure.http :as http])
+  (:require [com.twinql.clojure.async-client :as async]
+            [com.twinql.clojure.async-libs :as async-libs]
+            [com.twinql.clojure.http :as http])
   (:use clojure.test)
-  (:import
-     (java.net URI)))
-
+  (:import (java.net URI)))
 
 (deftest test-create-request
   (let [get-google (async/create-request :get "http://www.google.com")
@@ -102,18 +100,18 @@
        "POST"
 
        (.. req1 getURI toString)
-       "http://www.hotelicopter.com?name=Edgar&age=89&weight=166&city=Boston"
+       "http://www.hotelicopter.com?city=Boston&name=Edgar&weight=166&age=89"
 
        (.. req2 getURI toString)
        "http://www.hotelicopter.com"
 
        (.. req3 getURI toString)
-       "http://www.hotelicopter.com?name=Edgar&age=89&weight=166&city=Boston"
+       "http://www.hotelicopter.com?city=Boston&name=Edgar&weight=166&age=89"
 
        ;; This post has no body, but it does have query params,
        ;; so query params go in the body.
        (slurp (.. req2 getEntity getContent))
-       "name=Edgar&age=89&weight=166&city=Boston"
+       "city=Boston&name=Edgar&weight=166&age=89"
 
        ;; When query params go in the body, Content-Type header
        ;; should be "application/x-www-form-urlencoded"

@@ -1,57 +1,57 @@
 (ns com.twinql.clojure.async-client
   (:import (java.util.concurrent
             CountDownLatch
-            TimeUnit))
-  (:import (java.io IOException))
-  (:import (javax.net.ssl
-            SSLContext))
-  (:import (java.net
-            URLEncoder))
-  (:import (org.apache.http.impl.nio.conn
-            PoolingClientConnectionManager))
-  (:import (org.apache.http
+            TimeUnit)
+           (java.io IOException)
+           (javax.net.ssl
+            SSLContext)
+           (java.net
+            URLEncoder)
+           (org.apache.http.impl.nio.conn
+            PoolingClientConnectionManager)
+           (org.apache.http
             HttpResponse
-            HttpHost))
-  (:import (org.apache.http.entity
-            StringEntity))
-  (:import (org.apache.http.message
-            BasicHttpResponse))
-  (:import (org.apache.http.client.methods
+            HttpHost)
+           (org.apache.http.entity
+            StringEntity)
+           (org.apache.http.message
+            BasicHttpResponse)
+           (org.apache.http.client.methods
             HttpDelete
             HttpGet
             HttpHead
             HttpOptions
             HttpPost
-            HttpPut))
-  (:import (org.apache.http.params
+            HttpPut)
+           (org.apache.http.params
             BasicHttpParams
-            SyncBasicHttpParams))
-  (:import (org.apache.http.conn.params
+            SyncBasicHttpParams)
+           (org.apache.http.conn.params
             ConnManagerPNames
-            ConnPerRouteBean))
-  (:import (org.apache.http.conn.routing
-            HttpRoute))
-  (:import (org.apache.http.impl.nio.client
-            DefaultHttpAsyncClient))
-  (:import (org.apache.http.nio.client
-            HttpAsyncClient))
-  (:import (org.apache.http.nio.concurrent
-            FutureCallback))
-  (:import (org.apache.http.nio.conn.ssl
-            SSLLayeringStrategy))
-  (:import (org.apache.http.conn.ssl
+            ConnPerRouteBean)
+           (org.apache.http.conn.routing
+            HttpRoute)
+           (org.apache.http.impl.nio.client
+            DefaultHttpAsyncClient)
+           (org.apache.http.nio.client
+            HttpAsyncClient)
+           (org.apache.http.nio.concurrent
+            FutureCallback)
+           (org.apache.http.nio.conn.ssl
+            SSLLayeringStrategy)
+           (org.apache.http.conn.ssl
             X509HostnameVerifier
             AllowAllHostnameVerifier
-            StrictHostnameVerifier))
-  (:import (org.apache.http.impl.nio.reactor
-            DefaultConnectingIOReactor))
-  (:import (org.apache.commons.codec.binary
+            StrictHostnameVerifier)
+           (org.apache.http.nio.reactor IOReactorExceptionHandler)
+           (org.apache.http.impl.nio.reactor
+            DefaultConnectingIOReactor)
+           (org.apache.commons.codec.binary
             Base64))
-  (:require [clojure.string :as string])
-  (:require [com.twinql.clojure.http :as http])
-
-  (:require [com.twinql.clojure.sync-libs :as sync])
-  (:require [com.twinql.clojure.async-libs :as async]))
+  (:require [clojure.string :as string]
+            [com.twinql.clojure.http :as http]
+            [com.twinql.clojure.sync-libs :as sync]
+            [com.twinql.clojure.async-libs :as async]))
 
 
 (def #^AllowAllHostnameVerifier allow-all-hostname-verifier
@@ -181,7 +181,7 @@
                                    time-to-live
                                    TimeUnit/MILLISECONDS))
 
-(def *default-opts*
+(def ^:dynamic *default-opts*
      {:worker-threads 1
       :hostname-verifier allow-all-hostname-verifier
       :time-to-live 4000

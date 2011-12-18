@@ -1,4 +1,4 @@
-(ns tests
+(ns com.twinql.clojure.http-test
   (:refer-clojure)
   (:require [com.twinql.clojure.http :as http])
   (:use clojure.test)

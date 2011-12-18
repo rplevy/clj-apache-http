@@ -14,7 +14,8 @@
    (javax.net.ssl
     KeyManagerFactory
     SSLContext
-    HttpsURLConnection)
+    HttpsURLConnection
+    X509TrustManager)
    (java.io
     File
     InputStream
@@ -166,7 +167,7 @@
 ;; This is the connection you pass to the http get/post function.
 ;; You must call init-connection-manager to initialize the
 ;; connection manager with your certs and private keys.
-(declare *connection-manager*)
+(declare connection-manager)
 
 
 (defn #^org.apache.http.conn.scheme.SchemeRegistry create-scheme-registry
@@ -219,7 +220,7 @@
 (defn #^ClientConnectionManager init-connection-manager
   "Creates an instance of ClientConnectionManager using the specified
    configuration options. After calling this, an instance of
-   ClientConnectionManager will be available in *connection-manager*.
+   ClientConnectionManager will be available in connection-manager.
 
    The opts param is a map with the following keys:
 
@@ -264,11 +265,11 @@
   [opts]
   (let [scheme-registry (create-scheme-registry opts)
         http-params (or (:http-params opts) (BasicHttpParams.))]
-    (when-not (bound? #'*connection-manager*)
+    (when-not (bound? #'connection-manager)
       (if (= (:connection-mgr-type opts) "SingleClientConnManager")
-        (def *connection-manager* (SingleClientConnManager.
+        (def connection-manager (SingleClientConnManager.
                                    http-params scheme-registry))
-        (def *connection-manager* (ThreadSafeClientConnManager.
+        (def connection-manager (ThreadSafeClientConnManager.
                                    http-params scheme-registry)))))
-  *connection-manager*)
+  connection-manager)
 

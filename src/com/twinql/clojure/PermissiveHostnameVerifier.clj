@@ -20,20 +20,19 @@
    :constructors {[] []}))
 
 (defn -verify
-  [#^PermissiveHostnameVerifier this #^String host #^SSLSocket socket]
   "Always returns null"
+  [this host socket]
   (println "Called first version")
   nil)
 
 (defn -verify
-  [#^PermissiveHostnameVerifier this #^String host
-   #^"[String;" cns #^"[String;" subjectAlts]
   "Always returns null"
+  [this host cns subjectAlts]
   (println "Called second version")
   nil)
 
 (defn -verify
-  [#^PermissiveHostnameVerifier this #^String host #^X509Certificate cert]
   "Always returns null"
+  [this host cert]
   (println "Called third version")
   nil)

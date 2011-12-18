@@ -40,16 +40,16 @@
 ;; is trusted.
 ;;
 (defn -checkClientTrusted
-  [#^NaiveTrustManager this #^"[LX509Certificate;" chain #^String auth-type]
   "Always returns nil, never throws CertificateException"
+  [this chain auth-type]
   nil)
 
 (defn -checkServerTrusted
-  [#^NaiveTrustManager this #^"[LX509Certificate;" chain #^String auth-type]
   "Always returns nil, never throws CertificateException"
+  [this chain auth-type]
   nil)
 
-(defn #^"[LX509Certificate;" -getAcceptedIssuers [#^NaiveTrustManager this]
+(defn -getAcceptedIssuers [this]
   "Always returns nil"
   nil)
 

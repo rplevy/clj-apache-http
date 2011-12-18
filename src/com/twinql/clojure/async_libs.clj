@@ -28,7 +28,8 @@
     AllowAllHostnameVerifier)
    (org.apache.http.nio.conn.scheme
     Scheme
-    SchemeRegistry)))
+    SchemeRegistry
+    LayeringStrategy)))
 
 
 (defn #^SSLLayeringStrategy layering-strategy
@@ -41,7 +42,7 @@
   "Returns a new org.apache.http.nio.conn.scheme.Scheme. Param name should
    be \"http\" or \"https\". Param port is the port to connect to on the
    remote host."
-  [#^String name #^int port #^LayeringStrategy strategy]
+  [#^String name #^Long port #^LayeringStrategy strategy]
   (Scheme. name port strategy))
 
 

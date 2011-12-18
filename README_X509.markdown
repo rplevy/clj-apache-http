@@ -87,8 +87,8 @@ manager init-connection-manager will create. If unspecified, it defaults to
 ThreadSafeClientConnManager.
 
 The function init-connection-manager initializes and returns a connection
-manager. It also sets the value of *connection-manager*. So once you've
-called init-connection-manager, you can simply refer to *connection-manager*.
+manager. It also sets the value of connection-manager. So once you've
+called init-connection-manager, you can simply refer to connection-manager.
 
 # Debugging SSL Connections #
 
