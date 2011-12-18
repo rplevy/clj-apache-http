@@ -1,14 +1,14 @@
-(defproject rplevy/clj-apache-https "2.0.0"
+(defproject rplevy/clj-apache-https "2.0.1"
   :description "Clojure HTTP library using the Apache HttpClient. Based on clj-apache-http, but includes support for SSL client certificates and HttpAsyncClient."
 
   :dependencies [[org.clojure/clojure "1.3.0"]
                  [org.clojure/data.json "0.1.1"]
-                 [org.apache.httpcomponents/httpcore "4.1.1"]
-                 [org.apache.httpcomponents/httpmime "4.1.1"]
+                 [org.apache.httpcomponents/httpcore "4.2-alpha2"]
+                 [org.apache.httpcomponents/httpmime "4.2-alpha1"]
+                 [org.apache.httpcomponents/httpclient "4.2-alpha1"]
+                 [org.apache.httpcomponents/httpasyncclient "4.0-alpha1"]
                  [commons-logging/commons-logging "1.1.1"]
-                 [org.apache.httpcomponents/httpclient "4.1.1"]
-                 [org.apache.httpcomponents/httpasyncclient "4.0-alpha2"]
-                 [commons-codec "1.5"]]
+                 [commons-codec "1.6"]]
   :main com.twinql.clojure.core
   #_:repositories #_{"releases" ~(str "file://"
                                   user/local-maven-clone "/releases")
